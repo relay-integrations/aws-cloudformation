@@ -2,17 +2,13 @@
 
 Integration with Amazon Web Services CloudFormation for Puppet Relay.
 
-## External requirements
+## Actions
 
-_TBD_
+The following are supported actions: 
 
-## Getting started
-
-_TBD_
-
-## Examples
-
-_TBD_
+|   Type    |  Name              |
+|-----------|--------------------|
+| Step      | [cloudformation-deployer](/actions/steps/cloudformation-deployer)  | 
 
 ## Contributing
 
