@@ -8,7 +8,7 @@ The following are supported actions:
 
 |   Type    |  Name              |
 |-----------|--------------------|
-| Step      | [cloudformation-deployer](/actions/steps/cloudformation-deployer)  | 
+| Step      | [cloudformation-deployer](/steps/cloudformation-deployer)  | 
 
 ## Contributing
 
