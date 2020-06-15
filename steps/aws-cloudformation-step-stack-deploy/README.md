@@ -1,4 +1,4 @@
-# cloudformation-deployer
+# aws-cloudformation-step-stack-deploy
 
 This AWS CloudFormation deployer step container creates or updates a CloudFormation stack using a provided template.
 
@@ -39,7 +39,7 @@ steps:
 ...
 
 - name: cloudformation-deployer
-  image: projectnebula/cloudformation-deployer:latest
+  image: relaysh/aws-cloudformation-step-stack-deploy
   spec:
     aws:
       accessKeyID:
