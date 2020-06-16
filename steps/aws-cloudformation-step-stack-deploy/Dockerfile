@@ -13,9 +13,9 @@ RUN set -eux ; \
     rm -fr /tmp/ni
 RUN apk --no-cache add bash ca-certificates curl git jq openssh && update-ca-certificates
 RUN ["/bin/bash", "-c", "pip install awscli"]
-COPY "./step.sh" "/nebula/step-cloudformation-deployer.sh"
+COPY "./step.sh" "/nebula/step-aws-cloudformation-stack-deploy.sh"
 ENTRYPOINT []
-CMD ["/bin/bash", "/nebula/step-cloudformation-deployer.sh"]
+CMD ["/bin/bash", "/nebula/step-aws-cloudformation-stack-deploy.sh"]
 
 LABEL "org.opencontainers.image.title"="AWS CloudFormation deployer"
 LABEL "org.opencontainers.image.description"="The AWS CloudFormation deployer task creates or updates a CloudFormation stack using a provided template."
