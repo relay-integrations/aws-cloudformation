@@ -26,7 +26,7 @@ summary: Amazon Web Services CloudFormation
 
 # A paragraph or two describing what this integration does. Optional. Markdown.
 description: |
-    Integration with Amazon Web Services' CloudFormation service.
+    AWS CloudFormation is a service that helps you model and set up your Amazon Web Services resources so that you can spend less time managing those resources and more time focusing on your applications that run in AWS.
 
 # License information. Optional. If not specified, this integration is assumed
 # to be unlicensed proprietary code. Otherwise, must be a valid SPDX License
@@ -46,3 +46,6 @@ homepage: https://github.com/relay-integrations/relay-aws-cloudformation
 # URL to this integration's source code. Optional. If the homepage is a GitHub
 # link, may be inferred automatically.
 source: git://github.com/relay-integrations/relay-aws-cloudformation.git
+
+tags:
+  - aws
