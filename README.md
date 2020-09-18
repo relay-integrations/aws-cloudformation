@@ -2,13 +2,12 @@
 
 Integration with Amazon Web Services CloudFormation for Puppet Relay.
 
-## Actions
+## Steps
 
-The following are supported actions: 
 
-|   Type    |  Name              |
-|-----------|--------------------|
-| Step      | [aws-cloudformation-step-stack-deploy](/steps/aws-cloudformation-step-stack-deploy)  | 
+|  Name                                | Description
+|--------------------------------------|--------------------------------------|
+| [stack-deploy](/steps/stack-deploy)  | Creates or updates a CF stack        |
 
 ## Contributing
 

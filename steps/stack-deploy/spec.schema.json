@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "properties": {
+    "connection": {
+      "type": "object",
+      "x-relay-connectionType": "aws",
+      "description": "A Relay AWS connection to use",
+      "properties": {
+        "accessKeyID": {
+          "type": "string",
+          "description": "The acccessKeyID for the account"
+        },
+        "secretAccessKey": {
+          "type": "string",
+          "description": "The secret key for the account"
+        }
+      },
+      "required": [
+        "url",
+        "username",
+        "password"
+      ]
+    },
+    "stackName": {
+      "type": "string",
+      "description": "The name of the stack to create or update"
+    },
+    "template": {
+      "type": "string",
+      "description": "The body of the CloudFormation template as a string in YAML or JSON. One of template or templateFile must be specified."
+    },
+    "templateFile": {
+      "type": "string",
+      "description": "The relative path, within the Git repository given in the git parameters, to the template file to deploy. One of template or templateFile must be specified."
+    },
+    "git": {
+      "type": "object",
+      "description": "A map of git configuration. If you're using HTTPS, only name and repository are required.",
+      "properties": {
+        "ssh_key": {
+          "type": "string",
+          "description": "The SSH key to use when cloning the git repository. You can pass the key into Relay as a secret."
+        },
+        "known_hosts": {
+          "type": "string",
+          "description": "SSH known hosts file. Pass the contents of the file into Relay as a secret."
+        },
+        "name": {
+          "type": "string",
+          "description": "A directory name for the git clone"
+        },
+        "branch": {
+          "type": "string",
+          "description": "The git branch to clone"
+        },
+        "repository": {
+          "type": "string",
+          "description": "The git repository URL"
+        }
+      },
+      "required": [
+        "ssh_key",
+        "known_hosts",
+        "name",
+        "repository"
+      ]
+    },
+    "parameters": {
+      "type": "object",
+      "description": "A key-value mapping of CloudFormation parameters to pass to the template"
+    },
+    "s3": {
+      "type": "object",
+      "description": "An S3 bucket mapping for your s3 bucket and template",
+      "properties": {
+        "bucket": {
+          "type": "string",
+          "description": "An S3 bucket to upload the template to. Required for templates larger than 51,200 bytes."
+        },
+        "prefix": {
+          "type": "string",
+          "description": "A folder name to prefix the artifacts' file names with when it uploads them to the S3 bucket"
+        }
+      },
+      "required": [
+        "bucket"
+      ]
+    },
+    "capabilities": {
+      "type": "array",
+      "description": "A list of capabilities to use for the deployment, such as CAPABILITY_NAMED_IAM"
+    },
+    "tags": {
+      "type": "object",
+      "description": "A key-value mapping of tags to add to the deployment."
+    }
+  },
+  "required": [
+    "aws",
+    "stackName"
+  ]
+}
