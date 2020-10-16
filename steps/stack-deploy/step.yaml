@@ -30,35 +30,29 @@ schemas:
     file: outputs.schema.json
 
 examples:
-- summary: "Deploy a specific stack using Cloudformation"
+- summary: "Deploy a CloudFormation stack"
   content:
     apiVersion: v1
     kind: Step
-    - name: cloudformation-deployer
-      image: relaysh/aws-cloudformation-step-stack-deploy
-      spec:
-        connection: { type: aws, name: my-aws-connection }
-        aws:
-          region: us-west-2
-        stackName: my-stack
-        templateFile: templates/template.yaml
-        git:
-          ssh_key:
-            $type: Secret
-            name: ssh_key
-          known_hosts:
-            $type: Secret
-            name: known_hosts
-          name: my-git-repo
-          branch: dev
-          repository: path/to/your/repo
-        parameters:
-          Environment: production
-          CertificateARN: arn:aws:acm:us-east-1:123456789012:certificate/12345678-1234-1234-1234-123456789012
-        s3:
-          bucket: my-bucket
-          prefix: app
-        capabilities:
-          - CAPABILITY_NAMED_IAM
-        tags:
-          lifetime: 4d
+    name: cloudformation-deployer
+    image: relaysh/aws-cloudformation-step-stack-deploy
+    spec:
+      connection: { type: aws, name: my-aws-connection }
+      aws:
+        region: !Parameter awsRegion
+      stackName: !Parameter stackName
+      templateFile: templates/template.yaml
+      git:
+        ssh_key: !Secret ssh_key
+        known_hosts: !Secret known_hosts
+        name: !Parameter repo_name
+        branch: !Parameter branch
+        repository: !Parameter pathToRepo
+      parameters:
+        Environment: !Parameter environment
+        CertificateARN: !Parameter certificateARN
+      s3:
+        bucket: !Parameter bucketName
+        prefix: !Parameter bucketPrefix
+      capabilities:
+        - CAPABILITY_NAMED_IAM
