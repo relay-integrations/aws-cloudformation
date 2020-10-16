@@ -1,0 +1,58 @@
+apiVersion: integration/v1
+kind: Step
+name: stack-deploy
+version: 4
+summary: Deploy a CloudFormation stack
+description: This step runs a CloudFormation deploy to create or update a stack contained in a Git repository.
+
+icon:
+
+# The mechanism to use to construct this step. Required. Must be an action
+# builder. See the Builders section below.
+build:
+  # The schema version for builders. Required. For now, must be the exact
+  # string "build/v1". We may consider supporting custom third-party builders
+  # in the future.
+  apiVersion: build/v1
+
+  # The builder to use. Required.
+  kind: Docker
+
+publish:
+  repository: relaysh/aws-cloudformation-step-stack-deploy
+
+schemas:
+  spec:
+    source: file
+    file: spec.schema.json
+  outputs:
+    source: file
+    file: outputs.schema.json
+
+examples:
+- summary: "Deploy a CloudFormation stack"
+  content:
+    apiVersion: v1
+    kind: Step
+    name: cloudformation-deployer
+    image: relaysh/aws-cloudformation-step-stack-deploy
+    spec:
+      connection: { type: aws, name: my-aws-connection }
+      aws:
+        region: !Parameter awsRegion
+      stackName: !Parameter stackName
+      templateFile: templates/template.yaml
+      git:
+        ssh_key: !Secret ssh_key
+        known_hosts: !Secret known_hosts
+        name: !Parameter repo_name
+        branch: !Parameter branch
+        repository: !Parameter pathToRepo
+      parameters:
+        Environment: !Parameter environment
+        CertificateARN: !Parameter certificateARN
+      s3:
+        bucket: !Parameter bucketName
+        prefix: !Parameter bucketPrefix
+      capabilities:
+        - CAPABILITY_NAMED_IAM
