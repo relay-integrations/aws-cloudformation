@@ -2,7 +2,7 @@ apiVersion: integration/v1
 kind: Step
 name: stack-deploy
 version: 4
-summary: Deploy a CloudFormation stack
+summary: Deploy CloudFormation stack
 description: This step runs a CloudFormation deploy to create or update a stack contained in a Git repository.
 
 icon:
