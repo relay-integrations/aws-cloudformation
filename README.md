@@ -1,4 +1,4 @@
-# Amazon Web Services CloudFormation integration
+# AWS CloudFormation integration
 
 Integration with Amazon Web Services CloudFormation for Puppet Relay.
 
