@@ -22,7 +22,7 @@ version: v20200408
 
 # The shortest possible accurate description of this integration. Required. May
 # just be the name of the service.
-summary: Amazon Web Services CloudFormation
+summary: AWS CloudFormation
 
 # A paragraph or two describing what this integration does. Optional. Markdown.
 description: |
