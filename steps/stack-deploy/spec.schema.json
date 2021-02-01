@@ -92,7 +92,10 @@
     },
     "capabilities": {
       "type": "array",
-      "description": "A list of capabilities to use for the deployment, such as CAPABILITY_NAMED_IAM"
+      "description": "A list of capabilities to use for the deployment, such as CAPABILITY_NAMED_IAM",
+      "items": {
+        "type": "string"
+      }
     },
     "tags": {
       "type": "object",
