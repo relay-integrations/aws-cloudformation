@@ -3,7 +3,7 @@ kind: Step
 name: stack-deploy
 version: 4
 summary: Deploy CloudFormation stack
-description: This step runs a CloudFormation deploy to create or update a stack contained in a Git repository.
+description: Runs a CloudFormation deploy to create or update a stack contained in a Git repository.
 
 icon:
 
