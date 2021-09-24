@@ -1,1 +1,5 @@
-{"additionalProperties":{"type": "string"}}
+{
+    "additionalProperties": {
+        "type": "string"
+    }
+}
