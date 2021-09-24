@@ -7,15 +7,8 @@ description: Runs a CloudFormation deploy to create or update a stack contained 
 
 icon:
 
-# The mechanism to use to construct this step. Required. Must be an action
-# builder. See the Builders section below.
 build:
-  # The schema version for builders. Required. For now, must be the exact
-  # string "build/v1". We may consider supporting custom third-party builders
-  # in the future.
   apiVersion: build/v1
-
-  # The builder to use. Required.
   kind: Docker
 
 publish:
@@ -37,22 +30,21 @@ examples:
     name: cloudformation-deployer
     image: relaysh/aws-cloudformation-step-stack-deploy
     spec:
-      connection: { type: aws, name: my-aws-connection }
       aws:
-        region: !Parameter awsRegion
-      stackName: !Parameter stackName
+        connection: ${connections.aws.my-aws-connection}
+        region: ${parameters.awsRegion}
+      stackName: ${parameters.stackName}
       templateFile: templates/template.yaml
       git:
-        ssh_key: !Secret ssh_key
-        known_hosts: !Secret known_hosts
-        name: !Parameter repo_name
-        branch: !Parameter branch
-        repository: !Parameter pathToRepo
+        connection: ${connections.ssh.my-github-ssh-connection}
+        repository: ${parameters.repository}
+        name: ${parameters.repositoryName}
+        branch: ${parameters.branch}
       parameters:
-        Environment: !Parameter environment
-        CertificateARN: !Parameter certificateARN
+        Environment: ${parameters.environment}
+        CertificateARN: ${parameters.certificateARN}
       s3:
-        bucket: !Parameter bucketName
-        prefix: !Parameter bucketPrefix
+        bucket: ${parameters.bucketName}
+        prefix: ${parameters.bucketPrefix}
       capabilities:
         - CAPABILITY_NAMED_IAM
